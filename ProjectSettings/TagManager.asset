@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - enemy
+  - FP
+  - zoomCamera
+  - teleLoc
+  - tilemap
+  - sword
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - player
+  - obstacle
+  - enemy
+  - GUI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: background
+    uniqueID: 3077934707
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: midground
+    uniqueID: 2681949759
+    locked: 0
+  - name: foreground/overlay
+    uniqueID: 1900108201
+    locked: 0
+  - name: GUI
+    uniqueID: 2352330095
+    locked: 0
