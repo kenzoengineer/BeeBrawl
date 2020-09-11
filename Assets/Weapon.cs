@@ -16,13 +16,13 @@ public class Weapon : MonoBehaviour
     public int ammo = 7;
     public float delay = 0.75f;
     Vector3 mousePos;
-    bool played;
+    public bool reloading;
 
     float time;
 
     void Start() {
         lr.enabled = true;
-        played = false;
+        reloading = false;
         time = Time.time;
     }
 
@@ -33,21 +33,28 @@ public class Weapon : MonoBehaviour
         //Debug.DrawRay(fP.transform.position, mousePos * 100, Color.red, 0.01f);
         //Debug.DrawRay(fP.position, mousePos - fP.position, Color.red, 0.01f);
 
-        if (Time.time - time >= delay && ammo != 0) {
+        if (Time.time - time >= delay && ammo != 0 && !reloading) {
             underlay.color = new Color(87f / 255f, 197f / 255f, 92f / 255f);
         } else {
             underlay.color = new Color(205f / 255f, 88f / 255f, 107f / 255f);
         }
 
-        if (Input.GetButtonDown("Fire1") && CurrentWeapon.currentWeapon == 1 && Time.timeScale > 0 && ammo > 0 && Time.time - time >= delay) {
+        if (Input.GetButtonDown("Fire1") && CurrentWeapon.currentWeapon == 1 && Time.timeScale > 0 && ammo > 0 && Time.time - time >= delay && !reloading) {
             ammo -= 1;
             Shoot();
             time = Time.time;
         }
 
         if (ammo == 0) {
-            if (!played) {
-                played = true;
+            if (!reloading) {
+                reloading = true;
+                StartCoroutine(Reload());
+            }
+        }
+
+        if (Input.GetButtonDown("Reload") && ammo != 7) {
+            if (!reloading) {
+                reloading = true;
                 StartCoroutine(Reload());
             }
         }
@@ -81,10 +88,11 @@ public class Weapon : MonoBehaviour
     }
 
     IEnumerator Reload() {
+        underlay.color = new Color(205f / 255f, 88f / 255f, 107f / 255f);
         yield return new WaitForSeconds(0.5f);
         AudioSource.PlayClipAtPoint(reload, transform.position);
         yield return new WaitForSeconds(1.0f);
         ammo = 7;
-        played = false;
+        reloading = false;
     }
 }

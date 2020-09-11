@@ -18,7 +18,7 @@ public class FadeOut : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && CurrentWeapon.currentWeapon == 1 && weapon.ammo != 0) alpha = 1f;
+        if (Input.GetButtonDown("Fire1") && CurrentWeapon.currentWeapon == 1 && weapon.ammo != 0 && !weapon.reloading) alpha = 1f;
         if (alpha > 0.0f) alpha -= Time.deltaTime * speed;
 
         c = new Color(1f, 1f, 1f, alpha);
